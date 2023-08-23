@@ -4,7 +4,7 @@ import subprocess
 from flask import request
 
 def run_feroxbuster(domain, wordlist_path, options):
-    command = ['feroxbuster', f'--url {domain}']
+    command = ['feroxbuster', '--url', domain]
     
     if wordlist_path:
         command.extend(['-w', wordlist_path])

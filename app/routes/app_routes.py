@@ -2,6 +2,7 @@ import os
 import subprocess
 from fpdf import FPDF
 from flask import Blueprint, send_file, render_template, current_app, request, redirect, url_for
+from app.enumeration_scripts.feroxbuster import *
 import re
 import mysql.connector
 import uuid
@@ -11,8 +12,8 @@ from dotenv import load_dotenv
 # Create a new Flask app instance for the blueprint
 app_routes_bp = Blueprint('app_routes', __name__)
 
-def before_first_request():
-    load_dotenv()
+#def before_first_request():
+#    load_dotenv()
 
 def consolidate_results(result_list):
     consolidated = "\n".join(result_list)
@@ -85,7 +86,7 @@ def update_paths(result_id):
     pass
 
 @app_routes_bp.route('/subdom_enum', methods=['GET', 'POST'])
-def run_subdomainenum():
+def subdom_enum():
     if request.method == 'POST':
         domain = request.form['domain']
 
@@ -185,3 +186,27 @@ def run_enumeration_script(tool, domain):
     script_path = os.path.join('enumeration_scripts', f'{tool}.py')
     result = subprocess.run(['python', script_path, domain], capture_output=True, text=True)
     return result.stdout
+
+# Route for directory brute forcing
+@app_routes_bp.route('/feroxbuster', methods=['GET', 'POST'])
+def feroxbuster():
+    if request.method == 'POST':
+        target_url = request.form.get('target_url')
+        wordlist = request.files.get('wordlist')
+        options = request.form.getlist('options')
+
+        wordlist_path = '/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt'
+        if wordlist:
+            wordlist_path = 'app/static/temp/' + wordlist.filename
+            wordlist.save(wordlist_path)
+
+        feroxbuster_results = get_feroxbuster_results(options, target_url, wordlist_path)
+        results = []
+        for line in feroxbuster_results.splitlines():
+            parts = line.split(' ')
+            if len(parts) >= 2:
+                results.append({'url': parts[1], 'status_code': parts[0]})
+        
+        return render_template('feroxbuster_results.html', feroxbuster_results=results)
+    
+    return render_template('feroxbuster.html')
