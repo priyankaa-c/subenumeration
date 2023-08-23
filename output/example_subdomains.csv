@@ -1,0 +1,240 @@
+Subdomain
+""
+Searching in the Sublist3r API... 🔍
+Target ==> example.com-4
+"
+
+
+
+crt.sh ID
+
+
+       Logged At 
+ ⇧    
+Not Before
+
+Not After
+
+Common Name
+Matching Identities
+
+Issuer Name
+
+
+
+8913351873
+2023-03-17
+2023-01-13
+2024-02-13
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+8396709327
+2023-01-13
+2023-01-13
+2024-02-13
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+6359075900
+2022-03-17
+2022-03-14
+2023-03-14
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+6342480680
+2022-03-14
+2022-03-14
+2023-03-14
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+5813209289
+2021-12-17
+2021-12-10
+2022-12-09
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+5771467708
+2021-12-10
+2021-12-10
+2022-12-09
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+3704614715
+2020-11-27
+2020-11-24
+2021-12-25
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+3692510597
+2020-11-24
+2020-11-24
+2021-12-25
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+
+
+2854376823
+2020-05-25
+2018-11-28
+2020-12-02
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert SHA2 Secure Server CA
+
+
+2854374595
+2020-05-25
+2018-11-28
+2020-12-02
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert SHA2 Secure Server CA
+
+
+2854374664
+2020-05-25
+2018-11-28
+2020-12-02
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert SHA2 Secure Server CA
+
+
+987119772
+2018-11-29
+2018-11-28
+2020-12-02
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert SHA2 Secure Server CA
+
+
+984858191
+2018-11-28
+2018-11-28
+2020-12-02
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, CN=DigiCert SHA2 Secure Server CA
+
+
+34083306
+2016-09-23
+2010-09-02
+2011-10-01
+*.hosted.jivesoftware.com
+subjectname@example.com
+emailAddress=pki_admin@sungard.com, O=SunGard Availability Services, CN=SAS Public CA v1
+
+
+34001389
+2016-09-23
+2010-09-02
+2011-10-01
+*.uat3.hosted.jivesoftware.com
+subjectname@example.com
+emailAddress=pki_admin@sungard.com, O=SunGard Availability Services, CN=SAS Public CA v1
+
+
+24564717
+2016-07-14
+2016-07-14
+2017-07-14
+www.example.com
+example.comm.testexample.comwww.example.com
+C=US, O=""thawte, Inc."", CN=thawte SSL CA - G2
+
+
+24560643
+2016-07-14
+2016-07-14
+2018-07-14
+*.example.com
+*.example.comexample.com
+C=US, O=""thawte, Inc."", CN=thawte SSL CA - G2
+
+
+24560621
+2016-07-14
+2016-07-14
+2017-07-14
+www.example.com
+*.example.comexample.comm.example.comwww.example.com
+C=US, O=""thawte, Inc."", CN=thawte SSL CA - G2
+
+
+24558997
+2016-07-14
+2016-07-14
+2018-07-14
+www.example.com
+dev.example.comexample.comproducts.example.comsupport.example.comwww.example.com
+C=US, O=Symantec Corporation, OU=Symantec Trust Network, CN=Symantec Class 3 Secure Server CA - G4
+
+
+10557607
+2015-11-05
+2015-11-03
+2018-11-28
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert SHA2 High Assurance Server CA
+
+
+5857507
+2014-12-11
+2014-11-06
+2015-11-13
+www.example.org
+example.comwww.example.com
+C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert SHA2 High Assurance Server CA
+
+
+8506962125
+ 
+2023-01-27
+2033-01-24
+example.com
+example.comuser@example.com
+Issuer Not Found
+
+
+"
+Target ==> example.com-8
+Searching in the AnubisDB API... 🔍
+Target ==> example.com-9
+Target ==> example.com-2
+Searching in the Urlscan.io API... 🔍
+Searching in the CertSpotter API... 🔍
+Target ==> example.com-1
+Target ==> example.com-0
+Searching in the Threatcrowd API... 🔍
+Searching in the Archive.org API... 🔍
+Target ==> example.com-7
+Target ==> example.com-6
+Searching in the Threatminer API... 🔍
+Target ==> example.com-5
+Target ==> example.com-3
+Type: Identity    Match: ILIKE    Search: 'example.com'
+Searching in the Crtsh database API... 🔍

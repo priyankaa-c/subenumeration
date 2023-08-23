@@ -1,0 +1,19 @@
+<!-- templates/feroxbuster_results.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Feroxbuster Results</h3>
+<table>
+    <tr>
+        <th>URLs</th>
+        <th>Status Code</th>
+    </tr>
+    {% for result in feroxbuster_results %}
+    <tr>
+        <td>{{ result.url }}</td>
+        <td>{{ result.status_code }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
