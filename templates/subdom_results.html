@@ -3,15 +3,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Subdomain Enumeration Results</h3>
+<h3>Subdomain Enumeration Results for: {{ domain }}</h3>
 <p>Download results:</p>
- <div class="download-links">
-                        <a href="{{ url_for('app_routes.download_file', result_id=result_id, file_type='pdf') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
-			<a href="{{ url_for('app_routes.download_file', result_id=result_id, file_type='csv') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-csv"></i> Download CSV</a>
-			<a href="{{ url_for('app_routes.download_txt_file', result_id=result_id) }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-alt"></i> Download TXT</a>
-                    </div>
-    {% for subdomain in unique_subdomains %}
-        <li>{{ subdomain }}</li>
-    {% endfor %}
+<div class="download-links">
+    <a href="{{ url_for('app_routes.download_file', result_id=result_id, domain=domain, file_type='pdf') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
+    <a href="{{ url_for('app_routes.download_file', result_id=result_id, domain=domain, file_type='csv') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-csv"></i> Download CSV</a>
+    <a href="{{ url_for('app_routes.download_txt_file', result_id=result_id) }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-alt"></i> Download TXT</a>
+</div>
+
+<!-- Tabbed content -->
+<ul class="nav nav-tabs" id="resultsTabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="subdomains-tab" data-toggle="tab" href="#subdomains" role="tab" aria-controls="subdomains" aria-selected="true">Subdomains</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="ips-tab" data-toggle="tab" href="#ips" role="tab" aria-controls="ips" aria-selected="false">IP Addresses</a>
+    </li>
 </ul>
+
+<!-- Tab content -->
+<div class="tab-content" id="resultsTabsContent">
+    <div class="tab-pane fade show active" id="subdomains" role="tabpanel" aria-labelledby="subdomains-tab">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Subdomain</th>
+                    <th>Work Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subdomain in unique_subdomains %}
+                <tr>
+                    <td>{{ subdomain }}</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="ips" role="tabpanel" aria-labelledby="ips-tab">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>IP Address</th>
+                    <th>Work Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ip in unique_ips %}
+                <tr>
+                    <td>{{ ip }}</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

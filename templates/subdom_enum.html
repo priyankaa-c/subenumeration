@@ -3,10 +3,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Subdomain Enumeration</h3>
-<form method="POST" action="{{ url_for('app_routes.subdom_enum') }}">
-    <label for="target_domain">Target Domain:</label>
-    <input type="text" id="target_domain" name="target_domain" required>
-    <button type="submit">Enumerate Subdomains</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Subdomain Enumeration</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('app_routes.subdom_enum') }}">
+                        <div class="mb-3">
+                            <label for="domain" class="form-label">Target Domain:</label>
+                            <input type="text" id="domain" name="domain" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enumerate Subdomains</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

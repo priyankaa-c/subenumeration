@@ -16,14 +16,10 @@ def run_crtsh(domain):
             return "\n".join(filtered_subdomains)
 
         else:
-
             return f"Error: Failed to fetch data from crt.sh"
 
     except requests.RequestException as e:
-
         return f"Error: {e}"
-
-
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -34,5 +30,5 @@ if __name__ == '__main__':
 
     crtsh_results = run_crtsh(domain)
 
-    print(crtsh_results)
-
+    with open('temp/crtsh_output.txt', 'w') as output_file:
+        output_file.write(crtsh_results)

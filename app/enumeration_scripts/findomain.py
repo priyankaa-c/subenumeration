@@ -24,5 +24,5 @@ if __name__ == '__main__':
 
     findomain_results = run_findomain(domain)
 
-    print(findomain_results)
-
+    with open('temp/findomain_output.txt', 'w') as output_file:
+        output_file.write(findomain_results)
