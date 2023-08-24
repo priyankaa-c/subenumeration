@@ -119,7 +119,7 @@ def show_results(result_id):
     txt_filename = generate_file_name(domain, 'txt')
     txt_path = os.path.join(current_app.config['UPLOAD_FOLDER'], txt_filename)
     
-    with open(txt_path, 'wb') as txt_file:
+    with open(txt_path, 'w') as txt_file:
         txt_file.write(txt_data)
 
     with open(txt_path, 'r') as txt_file:
