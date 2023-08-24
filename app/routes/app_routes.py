@@ -7,13 +7,17 @@ import re
 import mysql.connector
 import uuid
 import datetime
-from dotenv import load_dotenv
+from dotenv import *
 
 # Create a new Flask app instance for the blueprint
-app_routes_bp = Blueprint('app_routes', __name__)
+app_routes_bp = Blueprint('app_routes', __name__, template_folder='templates')
 
-#def before_first_request():
-#    load_dotenv()
+# Define the configuration key for the blueprint
+app_routes_bp.config = {'UPLOAD_FOLDER': 'results'}
+
+# @app_routes_bp.before_app_first_request
+# def before_first_request():
+#     load_dotenv()
 
 def consolidate_results(result_list):
     consolidated = "\n".join(result_list)
@@ -31,7 +35,7 @@ def get_mysql_credentials():
     }
     return mysql_credentials
     
-@app_routes_bp.before_app_first_request
+
 def before_first_request():
     app_routes_bp.config = {'UPLOAD_FOLDER': 'results'}
 
@@ -88,7 +92,7 @@ def update_paths(result_id):
 @app_routes_bp.route('/subdom_enum', methods=['GET', 'POST'])
 def subdom_enum():
     if request.method == 'POST':
-        domain = request.form['domain']
+        domain = request.form['target_domain']
 
         # Run enumeration scripts and consolidate results
         findomain_results = run_enumeration_script('findomain', domain)
@@ -109,30 +113,43 @@ def subdom_enum():
 
     return render_template('subdom_enum.html')
 
-@app_routes_bp.route('/results/<result_id>', methods=['GET'])def show_results(result_id):    timestamp, domain, txt_data = retrieve_results(result_id)    txt_filename = generate_file_name(domain, 'txt')    txt_path = os.path.join(app.config['UPLOAD_FOLDER'], txt_filename)        with open(txt_path, 'wb') as txt_file:        txt_file.write(txt_data)    with open(txt_path, 'r') as txt_file:        consolidated_results = txt_file.read()        return render_template('subdom_results.html', result_id=result_id, domain=domain, consolidated_results=consolidated_results)
+@app_routes_bp.route('/results/<result_id>', methods=['GET'])
+def show_results(result_id):
+    timestamp, domain, txt_data = retrieve_results(result_id)
+    txt_filename = generate_file_name(domain, 'txt')
+    txt_path = os.path.join(current_app.config['UPLOAD_FOLDER'], txt_filename)
+    
+    with open(txt_path, 'wb') as txt_file:
+        txt_file.write(txt_data)
+
+    with open(txt_path, 'r') as txt_file:
+        consolidated_results = txt_file.read()
+    
+    return render_template('subdom_results.html', result_id=result_id, domain=domain, consolidated_results=consolidated_results)
 
 def generate_file_name(domain, extension):
     domain_without_tld = domain.split('.')[0]
     return f'{domain_without_tld}_results.{extension}'
 
 def save_results_to_txt(result_id, domain, consolidated_results):
+    upload_folder = app_routes_bp.config['UPLOAD_FOLDER']  # Access the config through the blueprint
     txt_filename = generate_file_name(domain, 'txt')
-    txt_path = os.path.join(app.config['UPLOAD_FOLDER'], txt_filename)
+    txt_path = os.path.join(upload_folder, txt_filename)
     with open(txt_path, 'w') as txt_file:
         txt_file.write(consolidated_results)
-    
+
     pdf_filename = generate_file_name(domain, 'pdf')
     pdf_path = create_pdf(domain, consolidated_results)
-    
+
     csv_filename = generate_file_name(domain, 'csv')
     csv_path = create_csv(domain, consolidated_results)
-    
+
     return txt_path, pdf_path, csv_path
 
 def create_pdf(domain, consolidated_results):
     domain_without_tld = domain.split('.')[0]
     pdf_filename = f'{domain_without_tld}_results.pdf'
-    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
+    pdf_path = os.path.join(current_app.config['UPLOAD_FOLDER'], pdf_filename)
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=10)
@@ -146,7 +163,7 @@ def create_pdf(domain, consolidated_results):
 def create_csv(domain, consolidated_results):
     domain_without_tld = domain.split('.')[0]
     csv_filename = f'{domain_without_tld}_results.csv'
-    csv_path = os.path.join(app.config['UPLOAD_FOLDER'], csv_filename)
+    csv_path = os.path.join(current_app.config['UPLOAD_FOLDER'], csv_filename)
     with open(csv_path, 'w') as f:
         f.write('Consolidated Results:\n')
         f.write(consolidated_results)
@@ -166,7 +183,7 @@ def download_file(result_id, file_type):
     _, _, txt_data = retrieve_results(result_id)
     domain = retrieve_results(result_id)[1]
     filename = generate_file_name(domain, file_type)
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
 
     return send_file(file_path, as_attachment=True)
 
@@ -175,7 +192,7 @@ def download_txt_file(result_id):
     _, _, txt_data = retrieve_results(result_id)
     domain = retrieve_results(result_id)[1]
     filename = generate_file_name(domain, 'txt')
-    txt_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    txt_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
     
     with open(txt_path, 'wb') as txt_file:
         txt_file.write(txt_data)
@@ -202,10 +219,10 @@ def feroxbuster():
 
         feroxbuster_results = get_feroxbuster_results(options, target_url, wordlist_path)
         results = []
-        for line in feroxbuster_results.splitlines():
-            parts = line.split(' ')
-            if len(parts) >= 2:
-                results.append({'url': parts[1], 'status_code': parts[0]})
+        #for line in feroxbuster_results.splitlines():
+         #   parts = line.split(' ')
+         #   if len(parts) >= 2:
+          #      results.append({'url': parts[1], 'status_code': parts[0]})
         
         return render_template('feroxbuster_results.html', feroxbuster_results=results)
     

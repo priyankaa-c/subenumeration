@@ -4,7 +4,7 @@
 
 {% block content %}
 <h3>Subdomain Enumeration</h3>
-<form method="POST" action="{{ url_for('subdomain_enum.subdomain_enum') }}">
+<form method="POST" action="{{ url_for('app_routes.subdom_enum') }}">
     <label for="target_domain">Target Domain:</label>
     <input type="text" id="target_domain" name="target_domain" required>
     <button type="submit">Enumerate Subdomains</button>
