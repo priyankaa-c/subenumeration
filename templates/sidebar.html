@@ -1,0 +1,78 @@
+<!-- templates/sidebar.html -->
+
+<div class="sidebar">
+    <ul>
+        <li>
+            <a href="{{ url_for('index') }}">
+                <span class="icon">
+                    <ion-icon name="bug"></ion-icon>
+                </span>
+                <span class="title">HunterX</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('index') }}">
+                <span class="icon">
+                    <ion-icon name="home-outline"></ion-icon>
+                </span>
+                <span class="title">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('app_routes.subdom_enum') }}">
+                <span class="icon">
+                    <ion-icon name="globe-outline"></ion-icon>
+                </span>
+                <span class="title">Subdomain</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('app_routes.feroxbuster') }}">
+                <span class="icon">
+                    <ion-icon name="link-outline"></ion-icon>
+                </span>
+                <span class="title">Feroxbuster</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="help-outline"></ion-icon>
+                </span>
+                <span class="title">Help</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="settings-outline"></ion-icon>
+                </span>
+                <span class="title">Settings</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <span class="title">Password</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <span class="icon">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </span>
+                <span class="title">Sign Out</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
