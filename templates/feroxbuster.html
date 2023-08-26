@@ -1,20 +1,36 @@
-<!-- templates/feroxbuster.html -->
-
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Feroxbuster Directory Brute-Forcing</h3>
-<form method="post">
-    <label for="target_url">Target URL:</label>
-    <input type="text" name="target_url" required><br><br>
-    <label for="wordlist">Wordlist (optional):</label>
-    <input type="file" name="wordlist"><br><br>
-    <label for="options">Feroxbuster Options:</label>
-    <select multiple name="options">
-        <option value="-x html">HTML Files</option>
-        <option value="-x php">PHP Files</option>
-        <!-- Add more options here -->
-    </select><br><br>
-    <input type="submit" value="Start Feroxbuster">
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Feroxbuster Directory Brute-Forcing</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="target_url" class="form-label">Target URL:</label>
+                            <input type="text" name="target_url" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="wordlist" class="form-label">Wordlist (optional):</label>
+                            <input type="file" name="wordlist" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="options" class="form-label">Feroxbuster Options:</label>
+                            <select multiple name="options" class="form-control">
+                                <option value="-x html">HTML Files</option>
+                                <option value="-x php">PHP Files</option>
+                                <!-- Add more options here -->
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Start Feroxbuster</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

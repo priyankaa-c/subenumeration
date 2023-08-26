@@ -1,5 +1,4 @@
-# app/enumeration_scripts/crtsh.py
-
+# subenumeration/app/enumeration_scripts/crtsh.py
 import requests
 import sys
 import re
@@ -12,12 +11,9 @@ def run_crtsh(domain):
             data = response.json()
             subdomains = set(item['name_value'] for item in data)
             filtered_subdomains = [subdomain for subdomain in subdomains if re.match(r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b|\b[a-zA-Z0-9.-]+\.{1}[a-zA-Z]{2,}\b', subdomain)]
-
             return "\n".join(filtered_subdomains)
-
         else:
             return f"Error: Failed to fetch data from crt.sh"
-
     except requests.RequestException as e:
         return f"Error: {e}"
 
@@ -27,8 +23,5 @@ if __name__ == '__main__':
         sys.exit(1)
 
     domain = sys.argv[1]
-
     crtsh_results = run_crtsh(domain)
-
-    with open('temp/crtsh_output.txt', 'w') as output_file:
-        output_file.write(crtsh_results)
+    print(crtsh_results)

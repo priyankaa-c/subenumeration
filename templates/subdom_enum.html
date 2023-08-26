@@ -11,7 +11,7 @@
                     <h3 class="card-title">Subdomain Enumeration</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ url_for('app_routes.subdom_enum') }}">
+                    <form action="{{ url_for('app_routes.subdom_enum') }}" method="POST">
                         <div class="mb-3">
                             <label for="domain" class="form-label">Target Domain:</label>
                             <input type="text" id="domain" name="domain" class="form-control" required>
@@ -23,5 +23,15 @@
         </div>
     </div>
 </div>
+<!-- <div class="container mt-5">
+    <h2>Subdomain Enumeration</h2>
+    <form action="{{ url_for('app_routes.subdom_enum') }}" method="POST">
+        <div class="form-group">
+            <label for="domain">Enter Domain:</label>
+            <input type="text" class="form-control" id="domain" name="domain" placeholder="example.com">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div> -->
 {% endblock %}
 

@@ -1,5 +1,4 @@
-# app/enumeration_scripts/findomain.py
-
+# subenumeration/app/enumeration_scripts/findomain.py
 import subprocess
 import sys
 import re
@@ -24,5 +23,6 @@ if __name__ == '__main__':
 
     findomain_results = run_findomain(domain)
 
-    with open('temp/findomain_output.txt', 'w') as output_file:
-        output_file.write(findomain_results)
+    print(findomain_results)
+
+

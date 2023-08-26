@@ -1,5 +1,4 @@
-# app/enumeration_scripts/subfinder.py
-
+# subenumeration/app/enumeration_scripts/subfinder.py
 import subprocess
 import sys
 import re
@@ -24,5 +23,5 @@ if __name__ == '__main__':
 
     subfinder_results = run_subfinder(domain)
 
-    with open('temp/subfinder_output.txt', 'w') as output_file:
-        output_file.write(subfinder_results)
+    print(subfinder_results)
+

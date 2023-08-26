@@ -4,12 +4,7 @@
 
 {% block content %}
 <h3>Subdomain Enumeration Results for: {{ domain }}</h3>
-<p>Download results:</p>
-<div class="download-links">
-    <a href="{{ url_for('app_routes.download_file', result_id=result_id, domain=domain, file_type='pdf') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
-    <a href="{{ url_for('app_routes.download_file', result_id=result_id, domain=domain, file_type='csv') }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-csv"></i> Download CSV</a>
-    <a href="{{ url_for('app_routes.download_txt_file', result_id=result_id) }}" class="btn btn-primary" download target="_blank"><i class="fas fa-file-alt"></i> Download TXT</a>
-</div>
+
 
 <!-- Tabbed content -->
 <ul class="nav nav-tabs" id="resultsTabs" role="tablist">
@@ -21,7 +16,7 @@
     </li>
 </ul>
 
-<!-- Tab content -->
+<!--Tab content -->
 <div class="tab-content" id="resultsTabsContent">
     <div class="tab-pane fade show active" id="subdomains" role="tabpanel" aria-labelledby="subdomains-tab">
         <table class="table">
@@ -29,13 +24,15 @@
                 <tr>
                     <th>Subdomain</th>
                     <th>Work Status</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
             <tbody>
-                {% for subdomain in unique_subdomains %}
+                {% for subdomain in subdomains %}
                 <tr>
                     <td>{{ subdomain }}</td>
                     <td><input type="checkbox"></td>
+                    <td><input type="textarea" class="form-control" name="commentbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -47,6 +44,7 @@
                 <tr>
                     <th>IP Address</th>
                     <th>Work Status</th>
+                    <th>Comments</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +52,7 @@
                 <tr>
                     <td>{{ ip }}</td>
                     <td><input type="checkbox"></td>
+                    <td><input type="text" name="commentbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
